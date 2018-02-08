@@ -1,0 +1,14 @@
+godata/*
+!godata/.keepme
+
+gohome/.cache/*
+gohome/.docker/*
+gohome/.pex/*
+gohome/.pylint.d/*
+gohome/.ssh/*
+!gohome/.ssh/config
+
+gogs/git/*
+gogs/gogs/data/*
+gogs/gogs/log/*
+gogs/ssh/*

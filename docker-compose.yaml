@@ -1,0 +1,52 @@
+---
+version: '3'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    volumes:
+      - ./godata:/godata
+      - ./gohome:/home/go
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - gocd
+    ports:
+      - "8153:8153"
+      - "8154:8154"
+
+  agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    environment:
+      GO_SERVER_URL: https://server:8154/go
+      AGENT_AUTO_REGISTER_KEY: 12345678-90ab-cdef-1234-567890abcdef
+      AGENT_AUTO_REGISTER_RESOURCES: git,docker
+      AGENT_AUTO_REGISTER_ENVIRONMENTS: Your,Environments,Go,Here
+    volumes:
+      - ./gohome:/home/go
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - gocd
+
+  gogs:
+    image: gogs/gogs:latest
+    volumes:
+      - ./gogs:/data
+    networks:
+      - gocd
+    ports:
+      - "3000:3000"
+      - "10022:10022"
+
+  registry:
+    image: registry:latest
+    networks:
+      - gocd
+    ports:
+      - "5000:5000"
+
+networks:
+  gocd:
+    driver: bridge
