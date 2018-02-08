@@ -14,7 +14,7 @@ This is a small set of tools to test GoCD with pipelines as code.
   * Run `docker-compose up -d --scale agent=0` to start up the containers (except agents - we will start them in a minute)
   * Copy the value for agentAutoRegisterKey from [the XML config](http://localhost:8153/go/admin/config_xml) and edit it in docker-compose.yaml for the agent
   * Run `docker-compose up -d --scale agent=2` to start the agents
-* Create new user on the [GoCD Server](http://localhost:3000)
+* Create new user on the [Gogs Server](http://localhost:3000)
 * Create new repo for pipeline code
 * Add the public key as publish key to the new repo
 * Configure the GoCD server to use your newly created repo as pipeline config source
