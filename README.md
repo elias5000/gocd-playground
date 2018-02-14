@@ -25,7 +25,7 @@ This is a small set of tools to test GoCD with pipelines as code.
 ```
  <config-repos>
     <config-repo pluginId="yaml.config.plugin" id="ots-pipeline-code">
-      <git url="http://172.25.0.3:3000/my-user/my-pipeline-code-repo.git" />
+      <git url="http://gocdplayground_gogs_1:3000/my-user/my-pipeline-code-repo.git" />
     </config-repo>
   </config-repos>
 ```
