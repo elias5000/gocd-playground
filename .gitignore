@@ -8,7 +8,11 @@ gohome/.pylint.d/*
 gohome/.ssh/*
 !gohome/.ssh/config
 
-gogs/git/*
-gogs/gogs/data/*
-gogs/gogs/log/*
-gogs/ssh/*
+gitea/git/*
+gitea/gitea/gitea.db
+gitea/gitea/data/*
+gitea/gitea/indexers/*
+gitea/gitea/sessions/*
+gitea/gitea/log/*
+gitea/gitea/ssh/*
+gitea/ssh/*

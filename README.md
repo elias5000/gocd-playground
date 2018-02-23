@@ -5,7 +5,7 @@ This is a small set of tools to test GoCD with pipelines as code.
 # Components
 * GoCD server
 * GoCD agent (uses host's docker engine to build/run containers)
-* Gogs Git repo server
+* Gitea Git repo server
 
 # Setup
 * Install Dependencies: Docker, Docker-compose
@@ -14,8 +14,8 @@ This is a small set of tools to test GoCD with pipelines as code.
   * Run `docker-compose up -d --scale agent=0` to start up the containers (except agents - we will start them in a minute)
   * Copy the value for agentAutoRegisterKey from [the XML config](http://localhost:8153/go/admin/config_xml) and edit it in docker-compose.yaml for the agent
   * Run `docker-compose up -d --scale agent=2` to start the agents
-* Create a new user on the [Gogs Server](http://localhost:3000)
-* Create a new repo for pipeline code on Gogs
+* Create a new user on the [Gitea Server](http://localhost:3000)
+* Create a new repo for pipeline code on Gitea
 * Create some pipeline configuration inside the repo
    * You can use [this](https://github.com/tomzo/gocd-yaml-config-example/blob/master/ci.gocd.yaml) as a starting point
    * Any files matching `*.gocd.yaml*` will be used by GoCD by default
@@ -25,7 +25,7 @@ This is a small set of tools to test GoCD with pipelines as code.
 ```
  <config-repos>
     <config-repo pluginId="yaml.config.plugin" id="ots-pipeline-code">
-      <git url="http://gogs:3000/my-user/my-pipeline-code-repo.git" />
+      <git url="http://gitea:3000/my-user/my-pipeline-code-repo.git" />
     </config-repo>
   </config-repos>
 ```
@@ -36,7 +36,7 @@ This is a small set of tools to test GoCD with pipelines as code.
 # Pipeline development workflow
 
 * Edit the pipeline yaml as you see fit
-* Commit locally and push to the Gogs git remote
+* Commit locally and push to the Gitea git remote
   * The change should be applied by GoCD shortly
   * In case of failure, the previous version will be kept and any errors will be shown on the top right corner of the GoCD UI
 * Iterate over the pipeline code locally with repeated commits (you can also amend the same commit) until you're happy with the configuration
@@ -45,8 +45,9 @@ This is a small set of tools to test GoCD with pipelines as code.
 
 # Management:
 * [GoCD Server](http://localhost:8153)
-* [Gogs Repositories](http://localhost:3000)
+* [Gitea Repositories](http://localhost:3000)
 
 # Resources:
 * [CoCD YAML config plugin](https://github.com/tomzo/gocd-yaml-config-plugin)
 * [Pipeline as Code](https://docs.gocd.org/current/advanced_usage/pipelines_as_code.html)
+* [Gitea](https://gitea.io)
