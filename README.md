@@ -8,12 +8,18 @@ This is a small set of tools to test GoCD with pipelines as code.
 * Gitea Git repo server
 
 # Setup
-* Install Dependencies: Docker, Docker-compose
-* Create ssh_key for your playground by running `ssh-keygen -t rsa -f gohome/.ssh/id_rsa` and chose empty passphrase
-* Startup cluster
-  * Run `docker-compose up -d --scale agent=0` to start up the containers (except agents - we will start them in a minute)
-  * Copy the value for agentAutoRegisterKey from [the XML config](http://localhost:8153/go/admin/config_xml) and edit it in docker-compose.yaml for the agent
-  * Run `docker-compose up -d --scale agent=2` to start the agents
+* Install Dependencies: make, Docker, Docker-compose
+* Run `Make setup`
+  * creates files:
+    * gohome/.ssh/id_rsa
+    * gohome/.ssh/id_rsa.pub - ssh key used by GoCD to access repos for material fetching
+    * agentAutoRegisterKey - contains the AutoRegister Key for GoCD agents
+  * brings up:
+    * GoCD server
+    * Gitea server
+    * GoCD agents
+    
+# Configuration
 * Create a new user on the [Gitea Server](http://localhost:3000)
 * Create a new repo for pipeline code on Gitea
 * Create some pipeline configuration inside the repo
