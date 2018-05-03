@@ -12,7 +12,7 @@ setup: server .agentAutoRegisterKey .agent_env cluster summary
 
 up: cluster summary
 
-down:
+down: .agent_env
 	@docker-compose down
 
 server: .gohome/ssh/id_rsa*
