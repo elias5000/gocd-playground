@@ -6,20 +6,28 @@ all:
 	@echo "\tdown\t\tdestroy all containers"
 	@echo "\tclean\t\tcleanup everything (delete data)"
 
-.PHONY: setup server cluster down clean up
+.PHONY: setup server cluster down clean up summary
 
-setup: server agentAutoRegisterKey .env cluster
-	@echo "cluster is ready."
-	@echo "GoCD Web interface: http://localhost:8153/go/"
-	@echo "Gitea Repos: http://localhost:3000/"
+setup: server agentAutoRegisterKey .env cluster summary
 
-up: cluster
+up: cluster summary
 
 down:
 	@docker-compose down
 
 server: .gohome/ssh/id_rsa
 	@docker-compose up -d --scale agent=0
+
+summary:
+	@echo "\n##################################################"
+	@echo "Your cluster is ready. \(^.^)/"
+	@echo "##################################################"
+	@echo "Management:"
+	@echo "  GoCD Web interface: http://localhost:8153/go/"
+	@echo "  Gitea Repos:        http://localhost:3000/\n"
+	@echo "Public SSH key for repo access:"
+	@echo "  ./gohome/.ssh/id_rsa.pub"
+	@echo "##################################################"
 
 agentAutoRegisterKey:
 	@echo "waiting for the server to come up..."
