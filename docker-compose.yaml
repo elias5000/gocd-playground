@@ -19,11 +19,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.agent
+    env_file: .agent_env
     environment:
       GO_SERVER_URL: https://server:8154/go
-      AGENT_AUTO_REGISTER_KEY: 12345678-90ab-cdef-1234-567890abcdef
+      #AGENT_AUTO_REGISTER_KEY: 12345678-90ab-cdef-1234-567890abcdef
       AGENT_AUTO_REGISTER_RESOURCES: git,docker
-      AGENT_AUTO_REGISTER_ENVIRONMENTS: Your,Environments,Go,Here
+      AGENT_AUTO_REGISTER_ENVIRONMENTS: default
     volumes:
       - ./gohome:/home/go
       - /var/run/docker.sock:/var/run/docker.sock

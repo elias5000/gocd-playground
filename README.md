@@ -48,7 +48,12 @@ This is a small set of tools to test GoCD with pipelines as code.
 * When ready, tidy up your local git history and push to the production git remote to update your production GoCD configuration
 
 # Using elastic agents
-
+* Go to the [plugins page](http://localhost:8153/go/admin/plugins) and open settings for the Docker Elastic Agent Plugin
+  * Go Server URL: https://172.17.0.1:8154/go
+    * edit with your hosts IP on the docker bridge network if required
+    * the elastic agents will be connected to the default bridge network and have to connect to the playground endpoints via the forwarded ports on the server
+  * Agent auto-register Timeout: between 1-3 minutes 
+  * Docker URI: unix:///var/run/docker.sock
 
 # Management:
 * [GoCD Server](http://localhost:8153)
@@ -56,5 +61,6 @@ This is a small set of tools to test GoCD with pipelines as code.
 
 # Resources:
 * [CoCD YAML config plugin](https://github.com/tomzo/gocd-yaml-config-plugin)
+* [Elastic Agents Plugin](https://github.com/gocd-contrib/docker-elastic-agents)
 * [Pipeline as Code](https://docs.gocd.org/current/advanced_usage/pipelines_as_code.html)
 * [Gitea](https://gitea.io)

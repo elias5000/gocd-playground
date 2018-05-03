@@ -1,5 +1,5 @@
-agentAutoRegisterKey
-.env
+.agentAutoRegisterKey
+.agent_env
 
 godata/*
 !godata/.keepme
