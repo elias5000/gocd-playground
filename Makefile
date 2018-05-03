@@ -16,6 +16,10 @@ down:
 	@docker-compose down
 
 server: .gohome/ssh/id_rsa
+	@mkdir -p godata/plugins/external
+	@echo "downloading plugins..."
+	@wget -P godata/plugins/external https://github.com/gocd-contrib/script-executor-task/releases/download/0.3/script-executor-0.3.0.jar
+	@wget -P godata/plugins/external https://github.com/gocd-contrib/docker-elastic-agents/releases/download/v0.9.0/docker-elastic-agents-0.9.0-129.jar
 	@docker-compose up -d --scale agent=0
 
 summary:

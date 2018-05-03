@@ -40,13 +40,14 @@ This is a small set of tools to test GoCD with pipelines as code.
 * Configure the production git repository as another git remote to your local clone of the pipeline repository
 
 # Pipeline development workflow
-
 * Edit the pipeline yaml as you see fit
 * Commit locally and push to the Gitea git remote
   * The change should be applied by GoCD shortly
   * In case of failure, the previous version will be kept and any errors will be shown on the top right corner of the GoCD UI
 * Iterate over the pipeline code locally with repeated commits (you can also amend the same commit) until you're happy with the configuration
 * When ready, tidy up your local git history and push to the production git remote to update your production GoCD configuration
+
+# Using elastic agents
 
 
 # Management:
