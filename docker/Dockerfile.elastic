@@ -1,8 +1,4 @@
 FROM gocd/gocd-agent-alpine-3.6:v18.3.0
 
-RUN apk --no-cache add \
-    python3 \
-    make
-
 COPY gohome/.ssh /home/go/.ssh
 RUN chown -R go:go /home/go/.ssh

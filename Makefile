@@ -8,7 +8,7 @@ all:
 
 .PHONY: setup server cluster down clean up summary agent
 
-setup: server .agentAutoRegisterKey .agent_env cluster summary
+setup: server agent .agentAutoRegisterKey .agent_env cluster summary
 
 up: cluster summary
 
