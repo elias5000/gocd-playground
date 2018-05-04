@@ -4,7 +4,9 @@ services:
   server:
     build:
       context: .
-      dockerfile: Dockerfile.server
+      dockerfile: docker/Dockerfile.server
+    environment:
+      GO_SERVER_SYSTEM_PROPERTIES: '-Dplugin.cd.go.contrib.elastic-agent.docker.log.level=debug'
     volumes:
       - ./godata:/godata
       - ./gohome:/home/go
@@ -18,7 +20,7 @@ services:
   agent:
     build:
       context: .
-      dockerfile: Dockerfile.agent
+      dockerfile: docker/Dockerfile.agent
     env_file: .agent_env
     environment:
       GO_SERVER_URL: https://server:8154/go
@@ -41,12 +43,12 @@ services:
       - "3000:3000"
       - "10022:10022"
 
-  registry:
-    image: registry:latest
-    networks:
-      - gocd
-    ports:
-      - "5000:5000"
+#  registry:
+#    image: registry:latest
+#    networks:
+#      - gocd
+#    ports:
+#      - "5000:5000"
 
 networks:
   gocd:

@@ -6,7 +6,7 @@ all:
 	@echo "\tdown\t\tdestroy all containers"
 	@echo "\tclean\t\tcleanup everything (delete data)"
 
-.PHONY: setup server cluster down clean up summary
+.PHONY: setup server cluster down clean up summary agent
 
 setup: server .agentAutoRegisterKey .agent_env cluster summary
 
@@ -14,6 +14,9 @@ up: cluster summary
 
 down: .agent_env
 	@docker-compose down
+
+agent:
+	@docker build -f docker/Dockerfile.elastic -t playground-base-agent:latest .
 
 server: .gohome/ssh/id_rsa*
 	@mkdir -p godata/plugins/external
@@ -42,7 +45,7 @@ summary:
 		> .agentAutoRegisterKey
 
 cluster:
-	@docker-compose up -d --scale agent=2
+	@docker-compose up -d --scale agent=1
 
 .agent_env:
 	$(eval KEY := $(shell cat .agentAutoRegisterKey))

@@ -4,5 +4,5 @@ RUN apk --no-cache add docker
 
 RUN adduser go docker
 
-COPY agent_start.sh /
+COPY docker/agent_start.sh /
 ENTRYPOINT ["/agent_start.sh"]

@@ -48,12 +48,24 @@ This is a small set of tools to test GoCD with pipelines as code.
 * When ready, tidy up your local git history and push to the production git remote to update your production GoCD configuration
 
 # Using elastic agents
+## Plugin setup
 * Go to the [plugins page](http://localhost:8153/go/admin/plugins) and open settings for the Docker Elastic Agent Plugin
   * Go Server URL: https://172.17.0.1:8154/go
     * edit with your hosts IP on the docker bridge network if required
     * the elastic agents will be connected to the default bridge network and have to connect to the playground endpoints via the forwarded ports on the server
   * Agent auto-register Timeout: between 1-3 minutes 
   * Docker URI: unix:///var/run/docker.sock
+  * Use Private Registry: False
+
+## Agent Profile setup
+* Go to the [Elastic Agent Profiles](http://localhost:8153/go/admin/elastic_profiles) and add a new profile
+  * Id: Chose a name to your liking
+  * Docker image: e.g. playground-base-agent
+    * this is built by make as part of the setup target and contains the required credentials for access to the gitea server
+  * Host entries:
+    * 172.17.0.1 gitea (edit with your host IP on the docker bridge network if required)
+* In your pipeline reference the created agent profile
+* If you want to create your own agent images base them on playground-base-agent to have the SSH keys created by the setup target built-in
 
 # Management:
 * [GoCD Server](http://localhost:8153)
