@@ -1,4 +1,4 @@
-# GoCD Test:
+# GoCD Playground:
 
 This is a small set of tools that will setup a local development environment for GoCD using Docker containers.
 

@@ -6,7 +6,7 @@ all:
 	@echo "\tdown\t\tdestroy all containers"
 	@echo "\tclean\t\tcleanup everything (delete data)"
 
-.PHONY: setup server cluster down clean up summary agent
+.PHONY: setup server cluster down clean up summary agent wait
 
 setup: server agent .agentAutoRegisterKey .agent_env cluster summary
 
@@ -27,7 +27,11 @@ server: .gohome/ssh/id_rsa*
 	@docker-compose up -d --scale agent=0
 	@rm -f .agent_env
 
-summary:
+wait:
+	@echo "waiting for the server to come up..."
+	@while ( ! curl -sf -o /dev/null http://localhost:8153/go/api/admin/config.xml ); do sleep 5; done
+
+summary: wait
 	@echo "\n##################################################"
 	@echo "Your cluster is ready. \(^.^)/"
 	@echo "##################################################"
@@ -38,9 +42,7 @@ summary:
 	@echo "  ./gohome/.ssh/id_rsa.pub"
 	@echo "##################################################"
 
-.agentAutoRegisterKey:
-	@echo "waiting for the server to come up..."
-	@while ( ! curl -sf -o /dev/null http://localhost:8153/go/api/admin/config.xml ); do sleep 5; done
+.agentAutoRegisterKey: wait
 	@curl -sf http://localhost:8153/go/api/admin/config.xml | grep .agentAutoRegisterKey | sed -e 's/.*agentAutoRegisterKey="\([^"]*\).*/\1/' \
 		> .agentAutoRegisterKey
 
