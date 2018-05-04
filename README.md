@@ -1,11 +1,16 @@
 # GoCD Test:
 
-This is a small set of tools to test GoCD with pipelines as code.
+This is a small set of tools that will setup a local development environment for GoCD using Docker containers.
+
+Features include:
+* Single command setup `make setup`
+* Setup elastic agents using Docker runtime
+* Complete set of all required components (repository, server, agent, elastic agent base image)
 
 # Components
 * GoCD server
-* GoCD agent (uses host's docker engine to build/run containers)
-* Gitea Git repo server
+* GoCD agent
+* Gitea Git server
 
 # Setup
 * Install Dependencies: make, Docker, Docker-compose
