@@ -1,4 +1,4 @@
-FROM gocd/gocd-agent-alpine-3.6:v18.3.0
+FROM gocd/gocd-agent-alpine-3.6:v18.6.0
 
 COPY gohome/.ssh /home/go/.ssh
 RUN chown -R go:go /home/go/.ssh
