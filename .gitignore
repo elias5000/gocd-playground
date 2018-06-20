@@ -1,5 +1,7 @@
 .agentAutoRegisterKey
 .agent_env
+.vagrant
+ubuntu-xenial-16.04-cloudimg-console.log
 
 godata/*
 !godata/.keepme
