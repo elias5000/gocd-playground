@@ -13,11 +13,8 @@ gohome/.pylint.d/*
 gohome/.ssh/*
 !gohome/.ssh/config
 
-gitea/git/*
-gitea/gitea/gitea.db
-gitea/gitea/data/*
-gitea/gitea/indexers/*
-gitea/gitea/sessions/*
-gitea/gitea/log/*
-gitea/gitea/ssh/*
-gitea/ssh/*
+gogs/git/*
+gogs/gogs/data/*
+gogs/gogs/log/*
+gogs/gogs/ssh/*
+gogs/ssh/*

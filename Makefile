@@ -37,7 +37,7 @@ summary: wait
 	@echo "##################################################"
 	@echo "Management:"
 	@echo "  GoCD Web interface: http://localhost:8153/go/"
-	@echo "  Gitea Repos:        http://localhost:3000/\n"
+	@echo "  Gogs Repos:         http://localhost:3000/\n"
 	@echo "Public SSH key for repo access:"
 	@echo "  ./gohome/.ssh/id_rsa.pub"
 	@echo "##################################################"
@@ -59,13 +59,9 @@ cluster:
 clean: down
 	@rm -f  .agent_env
 	@rm -f  .agentAutoRegisterKey
-	@rm -rf gitea/git
-	@rm -f  gitea/gitea/gitea.db
-	@rm -rf gitea/gitea/indexers
-	@rm -rf gitea/gitea/lfs
-	@rm -rf gitea/gitea/log
-	@rm -rf gitea/gitea/sessions
-	@rm -rf gitea/gitea/ssh
-	@rm -rf gitea/ssh
+	@rm -rf gogs/git
+	@rm -rf gogs/gogs/log
+	@rm -rf gogs/gogs/data
+	@rm -rf gogs/ssh
 	@rm -rf godata
 	@rm -f  gohome/.ssh/id_rsa*
