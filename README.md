@@ -10,7 +10,7 @@ Features include:
 # Components
 * GoCD server
 * GoCD agent
-* Gitea Git server
+* Gogs Git server
 
 # Setup
 * Install Dependencies: make, Docker, Docker-compose
@@ -21,12 +21,12 @@ Features include:
     * agentAutoRegisterKey - contains the AutoRegister Key for GoCD agents
   * brings up:
     * GoCD server
-    * Gitea server
+    * Gogs server
     * GoCD agents
     
 # Configuration
-* Create a new user on the [Gitea Server](http://localhost:3000)
-* Create a new repo for pipeline code on Gitea
+* Create a new user on the [Gogs Server](http://localhost:3000)
+* Create a new repo for pipeline code on Gogs
 * Create some pipeline configuration inside the repo
    * You can use [this](https://github.com/tomzo/gocd-yaml-config-example/blob/master/ci.gocd.yaml) as a starting point
    * Any files matching `*.gocd.yaml*` will be used by GoCD by default
@@ -36,7 +36,7 @@ Features include:
 ```
  <config-repos>
     <config-repo pluginId="yaml.config.plugin" id="ots-pipeline-code">
-      <git url="http://gitea:3000/my-user/my-pipeline-code-repo.git" />
+      <git url="http://gogs:3000/my-user/my-pipeline-code-repo.git" />
     </config-repo>
   </config-repos>
 ```
@@ -46,7 +46,7 @@ Features include:
 
 # Pipeline development workflow
 * Edit the pipeline yaml as you see fit
-* Commit locally and push to the Gitea git remote
+* Commit locally and push to the Gogs git remote
   * The change should be applied by GoCD shortly
   * In case of failure, the previous version will be kept and any errors will be shown on the top right corner of the GoCD UI
 * Iterate over the pipeline code locally with repeated commits (you can also amend the same commit) until you're happy with the configuration
@@ -66,18 +66,18 @@ Features include:
 * Go to the [Elastic Agent Profiles](http://localhost:8153/go/admin/elastic_profiles) and add a new profile
   * Id: Chose a name to your liking
   * Docker image: e.g. playground-base-agent
-    * this is built by make as part of the setup target and contains the required credentials for access to the gitea server
+    * this is built by make as part of the setup target and contains the required credentials for access to the Gogs server
   * Host entries:
-    * 172.17.0.1 gitea (edit with your host IP on the docker bridge network if required)
+    * 172.17.0.1 gogs (edit with your host IP on the docker bridge network if required)
 * In your pipeline reference the created agent profile
 * If you want to create your own agent images base them on playground-base-agent to have the SSH keys created by the setup target built-in
 
 # Management:
 * [GoCD Server](http://localhost:8153)
-* [Gitea Repositories](http://localhost:3000)
+* [Gogs Repositories](http://localhost:3000)
 
 # Resources:
 * [CoCD YAML config plugin](https://github.com/tomzo/gocd-yaml-config-plugin)
 * [Elastic Agents Plugin](https://github.com/gocd-contrib/docker-elastic-agents)
 * [Pipeline as Code](https://docs.gocd.org/current/advanced_usage/pipelines_as_code.html)
-* [Gitea](https://gitea.io)
+* [Gogs](https://gogs.io)

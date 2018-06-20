@@ -33,10 +33,10 @@ services:
     networks:
       - gocd
 
-  gitea:
-    image: gitea/gitea:latest
+  gogs:
+    image: gogs/gogs:latest
     volumes:
-      - ./gitea:/data
+      - ./gogs:/data
     networks:
       - gocd
     ports:
