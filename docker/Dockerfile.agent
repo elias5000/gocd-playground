@@ -10,5 +10,3 @@ RUN pip3 install --upgrade pip && \
 
 RUN adduser go docker
 
-COPY docker/agent_start.sh /
-ENTRYPOINT ["/agent_start.sh"]
